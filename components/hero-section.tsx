@@ -68,7 +68,13 @@ export function HeroSection() {
   useEffect(() => {
     const updateTime = () => {
       const now = new Date()
-      const timeStr = `2077.12.28 ${now.getHours().toString().padStart(2, "0")}:${now.getMinutes().toString().padStart(2, "0")}:${now.getSeconds().toString().padStart(2, "0")} JST`
+      const beijingTime = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Shanghai" }))
+      const month = (beijingTime.getMonth() + 1).toString().padStart(2, "0")
+      const day = beijingTime.getDate().toString().padStart(2, "0")
+      const hours = beijingTime.getHours().toString().padStart(2, "0")
+      const minutes = beijingTime.getMinutes().toString().padStart(2, "0")
+      const seconds = beijingTime.getSeconds().toString().padStart(2, "0")
+      const timeStr = `2077.${month}.${day} ${hours}:${minutes}:${seconds} CST`
       setCurrentTime(timeStr)
     }
     updateTime()
